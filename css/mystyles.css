@@ -2,6 +2,19 @@
    劉姿妤的個人履歷樣式
    ================= */
 
+/* 基本滿版設定 */
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden; /* 防止水平滾動條 */
+}
+
 /* 頁面載入動畫 */
 body {
     animation: pageLoad 1s ease-in-out;
@@ -78,6 +91,45 @@ h2 {
         rgb(183, 110, 121) 0%, 
         rgb(150, 85, 96) 100%);
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    width: 17rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 1000;
+}
+
+/* 確保導覽列在大螢幕時滿高度 */
+@media (min-width: 992px) {
+    #sideNav {
+        padding-top: 0;
+        padding-bottom: 0;
+        flex-direction: column;
+    }
+    
+    #sideNav .navbar-brand {
+        display: flex;
+        margin: auto;
+        padding: 1.5rem;
+        text-align: center;
+    }
+    
+    #sideNav .navbar-nav {
+        flex-direction: column;
+        width: 100%;
+        margin-bottom: auto;
+    }
+}
+
+/* 手機版導覽列 */
+@media (max-width: 991.98px) {
+    #sideNav {
+        width: 100%;
+        height: auto;
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
 }
 
 /* 導覽連結美化 */
@@ -132,6 +184,55 @@ h3 {
     backdrop-filter: blur(10px);
     position: relative;
     z-index: 1;
+}
+
+/* 確保主要內容區域滿版 */
+.container-fluid {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+}
+
+/* 確保 resume-section 滿版 */
+.resume-section {
+    padding: 3rem 0;
+    margin: 0;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+/* 在大螢幕上為左側導覽留出空間，並確保右側沒有留白 */
+@media (min-width: 992px) {
+    .resume-section {
+        margin-left: 17rem; /* 為左側導覽留空間 */
+        width: calc(100vw - 17rem); /* 使用 viewport width 確保滿版 */
+        padding: 3rem 2rem; /* 左右內邊距 */
+    }
+    
+    .resume-section-content {
+        max-width: none;
+        width: 100%;
+        margin: 0;
+        padding: 3rem;
+    }
+}
+
+/* 手機版佈局 */
+@media (max-width: 991.98px) {
+    .resume-section {
+        margin-left: 0;
+        width: 100vw; /* 確保滿版 */
+        margin-top: 3.5rem; /* 為頂部導覽留空間 */
+        padding: 2rem 0;
+    }
+    
+    .resume-section-content {
+        padding: 2rem 1rem;
+        margin: 0 1rem;
+    }
 }
 
 /* --- 7. 工作經歷和教育背景美化 --- */
@@ -857,4 +958,148 @@ hr {
         transform: translateX(0);
         opacity: 1;
     }
+}
+
+/* --- 額外的滿版修正 --- */
+/* 確保所有元素不會超出螢幕範圍 */
+* {
+    max-width: 100%;
+}
+
+/* 修正可能的溢出問題 */
+.resume-section-content * {
+    word-wrap: break-word;
+    hyphens: auto;
+}
+
+/* 確保圖片響應式 */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* 滾動條美化 */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(183, 110, 121, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgb(183, 110, 121), rgb(218, 165, 32));
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, rgb(150, 85, 96), rgb(183, 110, 121));
+}
+
+/* 額外的響應式修正 */
+@media (max-width: 576px) {
+    .resume-section-content {
+        padding: 1.5rem 1rem;
+        margin: 0.5rem;
+        border-radius: 10px;
+    }
+    
+    h1 {
+        font-size: 2rem !important;
+    }
+    
+    h2 {
+        font-size: 1.5rem !important;
+    }
+    
+    .contact-info {
+        flex-direction: column !important;
+        gap: 1rem !important;
+    }
+    
+    .stats-container {
+        padding: 1rem;
+    }
+    
+    .counter {
+        font-size: 2rem !important;
+    }
+}
+
+/* 超小螢幕優化 */
+@media (max-width: 375px) {
+    .resume-section-content {
+        padding: 1rem 0.75rem;
+        margin: 0.25rem;
+    }
+    
+    .social-icon {
+        width: 2rem !important;
+        height: 2rem !important;
+        margin: 0 0.25rem !important;
+    }
+    
+    .dev-icons li i {
+        font-size: 2rem !important;
+    }
+}
+
+/* --- 桌面版右側留白修正 --- */
+@media (min-width: 992px) {
+    /* 強制確保主要內容區域完全填滿螢幕 */
+    body {
+        overflow-x: hidden;
+    }
+    
+    .resume-section {
+        /* 使用 viewport width 確保滿版到螢幕右邊緣 */
+        width: calc(100vw - 17rem) !important;
+        margin-left: 17rem !important;
+        margin-right: 0 !important;
+        padding-left: 2rem !important;
+        padding-right: 0 !important;
+        min-width: calc(100vw - 17rem);
+        max-width: calc(100vw - 17rem);
+    }
+    
+    .resume-section-content {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-right: 0 !important;
+        padding-right: 2rem !important;
+        box-sizing: border-box;
+    }
+    
+    /* 確保背景也完全覆蓋 */
+    .resume-section::before {
+        width: 100% !important;
+        right: 0 !important;
+    }
+    
+    /* 確保容器沒有任何邊距或內邊距造成留白 */
+    .container-fluid {
+        padding-right: 0 !important;
+        margin-right: 0 !important;
+    }
+}
+
+/* 額外的全域修正 */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    overflow-x: hidden;
+}
+
+/* 確保 Bootstrap 的容器不會造成右側留白 */
+.container,
+.container-fluid,
+.container-lg,
+.container-md,
+.container-sm,
+.container-xl {
+    max-width: none !important;
+    padding-right: 0 !important;
+    margin-right: 0 !important;
 }
